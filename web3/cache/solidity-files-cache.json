@@ -1,0 +1,40 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\HP\\Desktop\\Project\\Real-Estate-Dapp-Starter-File-main\\Real-Estate-Dapp-Starter-File-main\\web3\\contracts\\RealEstate.sol": {
+      "lastModificationDate": 1717000481238,
+      "contentHash": "45399e7bcef205a7bc25a9d62a6716c1",
+      "sourceName": "contracts/RealEstate.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.9"
+      ],
+      "artifacts": [
+        "RealEstate"
+      ]
+    }
+  }
+}
