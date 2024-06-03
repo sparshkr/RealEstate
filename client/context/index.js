@@ -187,10 +187,10 @@ export const StateContextProvider = ({ children }) => {
 
   const getProductReviewsFunction = (productId) => {
     try {
-      const { data: getProductReviews, isLoading: getProductReviewsFunction } =
+      const { data: getProductReviews, isLoading: getProductReviewsLoading } =
         useContractRead(contract, "getProductReviews");
 
-      return getProductReviews, getProductReviewsFunction;
+      return getProductReviews, getProductReviewsLoading;
     } catch (e) {
       console.log(e);
     }
@@ -199,7 +199,7 @@ export const StateContextProvider = ({ children }) => {
   const getPropertyFunction = (id) => {
     try {
       const { data: getProperty, isLoading: getPropertyLoading } =
-        useContractRead(contract, "getProperty");
+        useContractRead("getProperty", [id]);
 
       return getProperty, getPropertyLoading;
     } catch (e) {
@@ -207,6 +207,61 @@ export const StateContextProvider = ({ children }) => {
     }
   };
 
+  const getUserPropertyFunction = () => {
+    try {
+      const { data: getUserProperty, isLoading: getUserPropertyLoading } =
+        useContractRead("getUserProperty", [address]);
+
+      return getUserProperty, getUserPropertyLoading;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const getUserReviewsFunction = () => {
+    try {
+      const { data: getUserReviews, isLoading: getUserReviewsLoading } =
+        useContractRead("getUserReviews", [address]);
+
+      return getUserReviews, getUserReviewsLoading;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const totalPropertyFunction = () => {
+    try {
+      const { data: totalProperty, isLoading: totalPropertyLoading } =
+        useContractRead(contract, "propertyIndex");
+
+      return totalProperty, totalPropertyLoading;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const totalReviewFunction = () => {
+    try {
+      const { data: totalReview, isLoading: totalReviewLoading } =
+        useContractRead(contract, "reviewsCounter");
+
+      return totalReview, totalReviewLoading;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  //Read data from event
+
+  const { data: event } = useContractEvents(contract, "PropertyListed");
+  const { data: allEvents } = useContractEvents(contract);
+  const { data: eventWithoutListener } = useContractEvents(
+    contract,
+    undefined,
+    {
+      subscribe: false,
+    }
+  );
+
+  // console.log("Events ", event);
   return (
     <StateContext.Provider
       value={{
@@ -223,8 +278,12 @@ export const StateContextProvider = ({ children }) => {
         likeRiviewFunction,
         getHighestRatedProduct,
         getProductReviewsFunction,
-        getProductReviews,
+        // getProductReviews,
         getPropertyFunction,
+        getUserPropertyFunction,
+        getUserReviewsFunction,
+        totalPropertyFunction,
+        totalReviewFunction,
       }}
     >
       {children}

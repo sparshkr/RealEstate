@@ -1,4 +1,4 @@
-// import "../styles/globals.css";
+import "../styles/globals.css";
 import { ThirdwebProvider, ChainId, metamaskWallet } from "@thirdweb-dev/react";
 import { Sepolia } from "@thirdweb-dev/chains";
 import { ethers } from "ethers";
@@ -18,17 +18,19 @@ const App = ({ Component, pageProps }) => {
   // const signer = new ethers.providers.Web3Provider(window.ethereum).getSigner();
 
   return (
-    <ThirdwebProvider
-      activeChain={Sepolia}
-      supportedWallets={[metamaskConfig]}
-      clientId="0d7a273a86b230233dfc99e7cb2c676a"
+    <>
+      <ThirdwebProvider
+        activeChain={Sepolia}
+        supportedWallets={[metamaskConfig]}
+        clientId="0d7a273a86b230233dfc99e7cb2c676a"
 
-      // signer={signer}
-    >
-      <StateContextProvider>
-        <Component {...pageProps} />
-      </StateContextProvider>
-    </ThirdwebProvider>
+        // signer={signer}
+      >
+        <StateContextProvider>
+          <Component {...pageProps} />
+        </StateContextProvider>
+      </ThirdwebProvider>
+    </>
   );
 };
 
